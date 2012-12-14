@@ -33,6 +33,21 @@ end
 		function () return "goto_url", readlater_pinboard () end)
 
 
+function pre_format_html_hook (url, html)
+	--strip stuff that shouldnae be displayed anyway
+	if string.find(url, "://m.pinboard.in") then
+		html = string.gsub (html, '<div name="edit_checkbox".-</div>', '') --ok as no child divs
+		html = string.gsub (html, '<div class="star.-</div>', '') --ok as no child divs
+		html = string.gsub (html, '<fieldset id="bulk_edit_box">.-</fieldset>', '') --do this instead of parent div
+		html = string.gsub (html, '<a onclick="edit.-</a>', '') --Have to target these children of edit_links div directly
+		html = string.gsub (html, '<div class="delete_link".-</div>', '')
+		html = string.gsub (html, '<div style="display:inline" class="read">.-</div>', '')
+		html = string.gsub (html, '<div id="edit_bookmark_form".-</form>\n  \n</div>', '')
+		return html
+	end
+end
+
+
 --The following taken from the contrib hooks.lua sample
 function hx (c)
     return string.char((c >= 10 and (c - 10) + string.byte ('A')) or c + string.byte ('0'))
