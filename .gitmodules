@@ -1,3 +1,0 @@
-[submodule "lua-uri"]
-	path = lua-uri
-	url = git://gitorious.org/lua-uri/mainline.git
