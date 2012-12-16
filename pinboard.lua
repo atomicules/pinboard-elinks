@@ -3,6 +3,7 @@
 
 --ALT+p to save a bookmark. Brings up an XDialog, first row is to enter a description, second row is for tags
 --ALT+l to read later. 
+--Reformats the mobile site to be better for ELinks
 
 
 function addto_pinboard (description, tags)
@@ -76,22 +77,3 @@ function escape (str)
     return string.gsub (str, "(%W)", char2hex)
 end
 --end stealing
-
-
---Todo and Ideas
---==============
-
---Always redirect to mobile site? But this conflicts with the actual bookmarking up above. So maybe not!
---[[
-function follow_url_hook(url)
-	if string.find(url, "://pinboard.in") then
-		return "http://m.pinboard.in"
-	else
-		return url
-	end
-end
---]]
-
---Re-format the mobile site and see if can add Lua implementatons for deleting, editing bookmarks. For deleting just need to make a POST. If can't do this in browser could do it in Curl, via Lua.
-
---Tab sets would be cool, but don't think there is anyway to get list of open tabs via Lua interface? Perhaps read session snapshot from bookmarks file? Hmmm...

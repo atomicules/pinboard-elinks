@@ -4,6 +4,7 @@ Adds the following functionality to ELinks:
 
 - "ALT+p" Adds current page to Pinboard, with dialog box for description and tags
 - "ALT+l" Adds current page to Pinboard and marks as "Read Later"
+- Reformats the mobile site to be better for ELinks
 
 ##Installation
 
@@ -21,4 +22,6 @@ Rather than use Lua to hijack the goto\_url box, just add the following to `~/.e
 
 ##Todo
 
-See the notes at the bottom of the source code.
+- Considered always redirecting to mobile site, but conflicted with saving the actual bookmark, so not doing for now.
+- See if there is anyway can enable deleting bookmarks.
+- Tab sets would be cool, but don't think there is anyway to get list of open tabs via Lua interface? Perhaps read session snapshot from bookmarks file? Hmmm...
