@@ -39,12 +39,27 @@ function pre_format_html_hook (url, html)
 		html = string.gsub (html, '<div name="edit_checkbox".-</div>', '') --ok as no child divs
 		html = string.gsub (html, '<div class="star.-</div>', '') --ok as no child divs
 		html = string.gsub (html, '<fieldset id="bulk_edit_box">.-</fieldset>', '') --do this instead of parent div
-		html = string.gsub (html, '<a onclick="edit.-</a>', '') --Have to target these children of edit_links div directly
+		html = string.gsub (html, '<a class="bookmark_title.-edit</a>', new_edit_link )
 		html = string.gsub (html, '<div class="delete_link".-</div>', '')
 		html = string.gsub (html, '<div style="display:inline" class="read">.-</div>', '')
 		html = string.gsub (html, '<div id="edit_bookmark_form".-</form>\n  \n</div>', '')
 		return html
+	elseif string.find(url, "://pinboard.in/add%?url=") then --need to escape the ? here
+		--Remove delete and destroy from the add page.
+		html = string.gsub (html, '<div style="display:inline" id="delete_.-</div>', '')
+		html = string.gsub (html, '<div style="visibility:hidden;display:none" class="delete_div" id="destroy_.-</div>', '')
+		return html
 	end
+end
+
+
+function new_edit_link (s)
+	_,_,link = string.find (s, '<a class="bookmark_title.-href="(.-)"')
+	--But need to escape any %X (where X is a digit) in the URL http://stackoverflow.com/a/6705995/208793
+	link = string.gsub (link, "([%%])", "%%%1")
+	pbbase = "https://pinboard.in/add?url="
+	replacement = string.gsub (s, '<a onclick="edit.-</a>', '<a href="'..pbbase..link..'" class="edit">Edit</a><br>')
+	return replacement
 end
 
 
@@ -76,8 +91,6 @@ function follow_url_hook(url)
 	end
 end
 --]]
-
---Re-format the mobile site, remove any buttons that use javascript since that doesn't work in ELinks. Also remove stuff where CSS is "display: none", but ELinks is displaying anyway. Just make nice and basic.
 
 --Re-format the mobile site and see if can add Lua implementatons for deleting, editing bookmarks. For deleting just need to make a POST. If can't do this in browser could do it in Curl, via Lua.
 
