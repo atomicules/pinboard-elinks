@@ -10,7 +10,7 @@ function addto_pinboard (description, tags)
 	pinboardBase = 'https://pinboard.in/add?'
 	url = current_url ()
 	title = current_title ()
-	docURL = pinboardBase..'url='..escape (url)..'&title='..escape (title)..'&description='..escape (description)..'&tags='..escape (tags)..' ','Pinboard','toolbar=no,width=700,height=350';
+	docURL = pinboardBase..'url='..escape (url)..'&title='..escape (title)..'&description='..escape (description)..'&tags='..escape (tags)..'&next='..escape (url)..' ','Pinboard','toolbar=no,width=700,height=350';
     return docURL
 end
 	bind_key ("main", "Alt-p",
