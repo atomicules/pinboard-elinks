@@ -23,5 +23,4 @@ Rather than use Lua to hijack the goto\_url box, just add the following to `~/.e
 ##Todo
 
 - Considered always redirecting to mobile site, but conflicted with saving the actual bookmark, so not doing for now.
-- See if there is anyway can enable deleting bookmarks.
 - Tab sets would be cool, but don't think there is anyway to get list of open tabs via Lua interface? Perhaps read session snapshot from bookmarks file? Hmmm...
