@@ -11,7 +11,11 @@ Javascript support in ELinks is a bit lacking (it's never worked well for me any
 ##Installation
 
 Source from your `~/.elinks/hooks.lua` file with `dofile("pinboard.lua")`
-If you want to be able to delete bookmarks on Pinboard then you need to add in your auth\_token to the `pinboard.lua` file
+If you want to be able to delete bookmarks on Pinboard then you need to add in your auth\_token to a `~/.netrc` file in the following format:
+
+	machine pinboard.in
+		login <Your pinboard login name>
+		password <Your pinboard API token>
 
 ##Notes
 
