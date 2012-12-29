@@ -10,9 +10,9 @@ local pb_base = 'https://pinboard.in/add?'
 local pb_url
 
 function addto_pinboard (description, tags)
-	url = current_url ()
-	title = current_title ()
-	doc_url = pb_base..'url='..escape (url)..'&title='..escape (title)..'&description='..escape (description)..'&tags='..escape (tags)..'&next='..escape (url)..' ','Pinboard','toolbar=no,width=700,height=350';
+	local url = current_url ()
+	local title = current_title ()
+	local doc_url = pb_base..'url='..escape (url)..'&title='..escape (title)..'&description='..escape (description)..'&tags='..escape (tags)..'&next='..escape (url)..' ','Pinboard','toolbar=no,width=700,height=350';
     return doc_url
 end
 	bind_key ("main", "Alt-p",
@@ -25,9 +25,9 @@ end
 
 
 function readlater_pinboard ()
-	url = current_url ()
-	title = current_title ()
-	doc_url = pb_base..'later=yes&next=same&noui=yes&jump=close&url='..escape (url)..'&title='..escape (title)..' ','Pinboard','toolbar=no,width=100,height=100';
+	local url = current_url ()
+	local title = current_title ()
+	local doc_url = pb_base..'later=yes&next=same&noui=yes&jump=close&url='..escape (url)..'&title='..escape (title)..' ','Pinboard','toolbar=no,width=100,height=100';
 	--Uses &next=same to immediately return to page being bookmarked
     return doc_url
 end
@@ -57,8 +57,8 @@ end
 
 
 function new_edit_link (s)
-	_,_,link = string.find (s, '<a class="bookmark_title.-href="(.-)"')
-	login,token = readnetrc()
+	local _,_,link = string.find (s, '<a class="bookmark_title.-href="(.-)"')
+	local login,token = readnetrc()
 	--But need to escape any %X (where X is a digit) in the URL http://stackoverflow.com/a/6705995/208793
 	link = string.gsub (link, "([%%])", "%%%1")
 	if string.find(pb_url, "/b:") and not (login == nil) then --if on individual bm page, add Delete button as well
@@ -66,7 +66,7 @@ function new_edit_link (s)
 	else
 		delete_link = ''
 	end
-	replacement = string.gsub (s, '<a onclick="edit.-</a>', '<a href="'..pb_base..'url='..link..'" class="edit">Edit</a> '..delete_link..'<br>')
+	local replacement = string.gsub (s, '<a onclick="edit.-</a>', '<a href="'..pb_base..'url='..link..'" class="edit">Edit</a> '..delete_link..'<br>')
 	return replacement
 end
 
