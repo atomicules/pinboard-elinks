@@ -1,8 +1,8 @@
 --Pinboard tools for ELinks
 --source from your ~/.elinks/hooks.lua file with `dofile("pinboard.lua")`
 
---ALT+p to save a bookmark. Brings up an XDialog, first row is to enter a description, second row is for tags
---ALT+l to read later. 
+--CTRL+p to save a bookmark. Brings up an XDialog, first row is to enter a description, second row is for tags
+--CTRL+l to read later. 
 --Reformats the mobile site to be better for ELinks
 
 --In order to be able to delete need to enter auth_token in `.netrc`. See README
@@ -15,7 +15,7 @@ function addto_pinboard (description, tags)
 	local doc_url = pb_base..'url='..escape (url)..'&title='..escape (title)..'&description='..escape (description)..'&tags='..escape (tags)..'&next='..escape (url)..' ','Pinboard','toolbar=no,width=700,height=350';
     return doc_url
 end
-	bind_key ("main", "Alt-p",
+	bind_key ("main", "Ctrl-p",
 		function () xdialog("<Description>", "<Tags>",
 			function (description, tags)
 				return "goto_url",
@@ -31,7 +31,7 @@ function readlater_pinboard ()
 	--Uses &next=same to immediately return to page being bookmarked
     return doc_url
 end
-	bind_key ("main", "Alt-l",
+	bind_key ("main", "Ctrl-l",
 		function () return "goto_url", readlater_pinboard () end)
 
 
