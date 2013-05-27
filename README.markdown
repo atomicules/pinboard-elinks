@@ -2,8 +2,8 @@
 
 Adds the following functionality to ELinks:
 
-- "ALT+p" Adds current page to Pinboard, with dialog box for description and tags
-- "ALT+l" Adds current page to Pinboard and marks as "Read Later"
+- "CTRL+p" Adds current page to Pinboard, with dialog box for description and tags
+- "CTRL+l" Adds current page to Pinboard and marks as "Read Later"
 - Reformats the mobile site to be better for ELinks (Adds working edit/delete links)
 
 Javascript support in ELinks is a bit lacking (it's never worked well for me anyway) so it's not possible to use the Pinboard bookmarklets. Lua support in ELinks is much better, so this script does what the bookmarklets would do, but via lua. Since CSS support in ELinks is also a bit lacking - there's a lot of cruft on the Pinboard mobile sight in ELinks (stuff that's set as `display: none`, etc) - this script also cleans that up. The Pinboard edit and delete links won't work in ELinks because of javascript again, so this script generates replacement ones: Editing is done by "saving" the bookmark again, since the add page works fine; Deleting is done via the AP, since it is immediately destructive the delete link is only visible on the individual bookmark page, not when browsing through a list of bookmarks.
