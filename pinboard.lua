@@ -103,7 +103,7 @@ function hx (c)
 end
 
 function char2hex (c)
-    return '%'..hx (string.byte (c) / 16)..hx (math.mod(string.byte (c), 16))
+    return '%'..hx ((string.byte (c) / 16)-1)..hx (math.mod(string.byte (c), 16))
 end
 
 function escape (str)
