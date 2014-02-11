@@ -97,7 +97,7 @@ function readnetrc ()
 end
 
 
---The following taken from the contrib hooks.lua sample
+--The following taken from the contrib hooks.lua sample and so not covered by accompanying LICENSE
 function hx (c)
     return string.char((c >= 10 and (c - 10) + string.byte ('A')) or c + string.byte ('0'))
 end
