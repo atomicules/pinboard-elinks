@@ -2,7 +2,7 @@
 --source from your ~/.elinks/hooks.lua file with `dofile("pinboard.lua")`
 
 --CTRL+p to save a bookmark. Brings up an XDialog, first row is to enter a description, second row is for tags
---CTRL+l to read later. 
+--CTRL+o to read later (It's next to p. You try and find a none conflicting keyboard shortcut in Elinks)
 --Reformats the mobile site to be better for ELinks
 
 --In order to be able to delete need to enter auth_token in `.netrc`. See README
@@ -27,11 +27,11 @@ end
 function readlater_pinboard ()
 	local url = current_url ()
 	local title = current_title ()
-	local doc_url = pb_base..'later=yes&next=same&noui=yes&jump=close&url='..escape (url)..'&title='..escape (title)..' ','Pinboard','toolbar=no,width=100,height=100';
+	local doc_url = pb_base..'later=yes&next=same&noui=yes&jump=close&url='..escape (url)..'&title='..escape (title);
 	--Uses &next=same to immediately return to page being bookmarked
     return doc_url
 end
-	bind_key ("main", "Ctrl-l",
+	bind_key ("main", "Ctrl-o",
 		function () return "goto_url", readlater_pinboard () end)
 
 
