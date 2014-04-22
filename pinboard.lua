@@ -46,6 +46,8 @@ function pre_format_html_hook (url, html)
 		html = string.gsub (html, '<div class="delete_link".-</div>', '')
 		html = string.gsub (html, '<div style="display:inline" class="read">.-</div>', '')
 		html = string.gsub (html, '<div id="edit_bookmark_form".-</form>\n  \n</div>', '')
+		--Add a starred link to the nav menu
+		html = string.gsub (html, '(<div id="top_menu">\n<a href="/u:)(%w-)(/".-</a> ‧ )', '%1%2%3<a href="/u:%2/starred/" >starred</a> ‧ ')
 		return html
 	elseif string.find(url, "://pinboard.in/add%?url=") then --need to escape the ? here
 		--Remove delete and destroy from the add page.
