@@ -55,6 +55,7 @@ function pre_format_html_hook (url, html)
 		html = string.gsub (html, '<div style="visibility:hidden;display:none" class="delete_div" id="destroy_.-</div>', '')
 		return html
 	--Fix none, wrapping pages. For now, just this one
+	--This is nothing to do with Pinboard, but I can only have one pre_format_html_hook
 	elseif string.find(url, "antirez") then
 		--Change <pre> to <div> this is very hacky and prone to failure
 		html = string.gsub (html, '<pre(.-)</pre>', '<div%1</div>')
